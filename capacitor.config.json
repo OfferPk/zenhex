@@ -1,0 +1,9 @@
+{
+  "appId": "pk.offer.zenhex",
+  "appName": "ZenHex",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "android": {
+    "backgroundColor": "#080C14"
+  }
+}
