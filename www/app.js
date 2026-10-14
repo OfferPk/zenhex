@@ -53,7 +53,15 @@
 
   // Victory Modal
   const modalVictory = document.getElementById('modal-victory');
-  const victoryStats = document.getElementById('victory-stats');
+  const victoryCard = modalVictory.querySelector('.victory-card');
+  const victoryLevel = document.getElementById('victory-level');
+  const victorySubtitle = document.getElementById('victory-subtitle');
+  const victoryStars = document.getElementById('victory-stars');
+  const victoryMoves = document.getElementById('victory-moves');
+  const victoryPar = document.getElementById('victory-par');
+  const victoryRating = document.getElementById('victory-rating');
+  const victoryNextLabel = document.getElementById('victory-next-label');
+  const victoryNextDetail = document.getElementById('victory-next-detail');
   const btnNextLevel = document.getElementById('btn-next-level');
   const btnVictoryReplay = document.getElementById('btn-victory-replay');
   const vStar1 = document.getElementById('v-star-1');
@@ -282,8 +290,30 @@
 
     saveProgress();
 
-    // Update Victory Modal
-    victoryStats.textContent = `Completed in ${movesCount} moves (Par: ${currentLevel.parMoves}) • ${earnedStars} Stars Earned`;
+    // Update the level-complete summary.
+    victoryCard.dataset.rating = String(earnedStars);
+    victoryLevel.textContent = `PACK ${currentLevel.packId} · LEVEL ${currentLevel.id}`;
+    victoryMoves.textContent = String(movesCount);
+    victoryPar.textContent = String(currentLevel.parMoves);
+    victoryRating.textContent = `${earnedStars} / 3`;
+    victoryStars.setAttribute('aria-label', `${earnedStars} out of 3 stars earned`);
+
+    if (earnedStars === 3) {
+      victorySubtitle.textContent = 'A perfectly tuned loop — you met the target par.';
+    } else if (earnedStars === 2) {
+      victorySubtitle.textContent = 'A smooth solve. Refine your route to earn the full three-star flow.';
+    } else {
+      victorySubtitle.textContent = 'Loop restored. Replay anytime to find a more balanced route.';
+    }
+
+    const nextLevel = ZenHexLevels.LEVELS[currentLevelIndex + 1];
+    if (nextLevel) {
+      victoryNextLabel.textContent = 'Continue';
+      victoryNextDetail.textContent = `Pack ${nextLevel.packId} · Level ${nextLevel.id}`;
+    } else {
+      victoryNextLabel.textContent = 'Choose another level';
+      victoryNextDetail.textContent = 'All 50 levels complete';
+    }
 
     [vStar1, vStar2, vStar3].forEach((starEl, idx) => {
       if (idx < earnedStars) {

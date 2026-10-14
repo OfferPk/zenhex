@@ -90,12 +90,16 @@
     <div class="modal-overlay active" id="modal-start" role="dialog" aria-modal="true" aria-labelledby="start-title">
       <div class="modal-card start-card">
         <div class="start-brand">
+          <span class="start-eyebrow">PAUSE · FOCUS · FLOW</span>
           <svg class="logo-hex-large" viewBox="0 0 100 100" aria-hidden="true">
             <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5"/>
             <circle cx="50" cy="50" r="16" fill="#00f2fe"/>
           </svg>
           <h1 id="start-title" class="brand-title-large">ZenHex</h1>
-          <p class="tagline">Calm Hexagonal Loop-Rotation Logic Puzzle</p>
+          <p class="tagline">A quiet loop puzzle for a clear mind.</p>
+          <p class="start-facts" aria-label="Game highlights">
+            <span>50 gentle challenges</span><span aria-hidden="true">·</span><span>Ready offline</span>
+          </p>
         </div>
 
         <div class="start-instructions">
@@ -135,19 +139,28 @@
         </div>
 
         <div class="start-actions">
-          <button class="btn-primary" id="btn-start-play">Play Level <span id="start-continue-level">1</span></button>
-          <button class="btn-secondary" id="btn-start-levels">Level Select</button>
+          <button class="btn-primary" id="btn-start-play">Play level <span id="start-continue-level">1</span></button>
+          <button class="btn-secondary" id="btn-start-levels">Browse levels</button>
         </div>
       </div>
     </div>
 
     <!-- Victory Modal -->
     <div class="modal-overlay" id="modal-victory" role="dialog" aria-modal="true" aria-labelledby="victory-title">
-      <div class="modal-card">
+      <div class="modal-card victory-card" data-rating="0">
+        <div class="victory-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" focusable="false">
+            <path d="M24 4.5 40.9 14.25v19.5L24 43.5 7.1 33.75v-19.5L24 4.5Z" />
+            <path class="victory-check" d="m16.5 24.5 5 5 10.5-11" />
+          </svg>
+        </div>
+        <p class="victory-eyebrow" id="victory-level">PACK 1 · LEVEL 1</p>
         <h2 id="victory-title">Harmony Restored!</h2>
-        <p id="victory-subtitle">The sacred energy conduits flow freely in a complete closed loop.</p>
+        <p class="victory-subtitle" id="victory-subtitle">The sacred energy conduits flow freely in a complete closed loop.</p>
 
-        <div class="star-container" aria-label="Rating stars">
+        <div class="victory-rating-block">
+          <span class="victory-section-label">YOUR FLOW RATING</span>
+          <div class="star-container" id="victory-stars" role="img" aria-label="0 out of 3 stars earned">
           <svg class="star" id="v-star-1" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
           </svg>
@@ -157,11 +170,31 @@
           <svg class="star" id="v-star-3" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
           </svg>
+          </div>
         </div>
 
-        <p id="victory-stats">Moves: 4 | Par: 4</p>
-        <button class="btn-primary" id="btn-next-level">Next Level</button>
-        <button class="btn-secondary" id="btn-victory-replay">Replay</button>
+        <div class="victory-stats" role="group" aria-label="Level result summary">
+          <div class="victory-stat">
+            <span>Moves</span>
+            <strong id="victory-moves">4</strong>
+          </div>
+          <div class="victory-stat">
+            <span>Target par</span>
+            <strong id="victory-par">4</strong>
+          </div>
+          <div class="victory-stat victory-stat-rating">
+            <span>Stars</span>
+            <strong id="victory-rating">0 / 3</strong>
+          </div>
+        </div>
+
+        <div class="victory-actions">
+          <button class="btn-primary victory-next" id="btn-next-level">
+            <span id="victory-next-label">Continue</span>
+            <span class="victory-next-detail" id="victory-next-detail">Pack 1 · Level 2</span>
+          </button>
+          <button class="btn-secondary" id="btn-victory-replay">Replay level</button>
+        </div>
       </div>
     </div>
 
